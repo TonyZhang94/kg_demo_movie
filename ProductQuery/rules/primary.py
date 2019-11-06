@@ -7,19 +7,6 @@ from ProductQuery.predicate import *
 from ProductQuery.questions import *
 
 # TODO
-"""
-1. 某演员演了什么电影
-2. 某电影有哪些演员出演
-3. 演员A和演员B合作出演了哪些电影
-4. 某演员参演的评分大于X的电影有哪些
-5. 某演员出演过哪些类型的电影
-6. 某演员出演的XX类型电影有哪些。
-7. 某演员出演了多少部电影。
-8. 某演员是什么类型的演员吗。
-9. 某演员的生日/出生地/英文名/简介
-10. 某电影的简介/上映日期/评分
-"""
-
 # rules = [
 #     Rule(condition_num=2, condition=person_entity + Star(Any(), greedy=False) + movie + Star(Any(), greedy=False), action=MovieQuestionSet.has_movie_question),
 #     Rule(condition_num=2, condition=(movie_entity + Star(Any(), greedy=False) + actor + Star(Any(), greedy=False)) | (actor + Star(Any(), greedy=False) + movie_entity + Star(Any(), greedy=False)), action=MovieQuestionSet.has_actor_question),
@@ -34,6 +21,41 @@ from ProductQuery.questions import *
 # ]
 
 DotStarNG = Star(Any(), greedy=False)
+DotStar = Star(Any(), greedy=True)
+regex_product = ((entity_brand + DotStarNG + entity_model) | (entity_model + DotStarNG + entity_brand))
 
 rules = list()
-rules.append(Rule(condition_num=2, condition=p_hasAbility + DotStarNG + entity_function + DotStarNG, action=ProductQuestionSet.has_function_question))
+# 拥有某项属性的某类产品
+# e.g. 我想查看可以喷雾的电子美容仪有哪些
+rules.append(Rule(condition_num=3, condition=p_hasAbility + DotStarNG + entity_attribute + DotStarNG + entity_cidname, action=ProductQuestionSet.has_attribute_question))
+# e.g. 电子美容仪中可以喷雾的有哪些型号
+rules.append(Rule(condition_num=3, condition=entity_cidname + DotStarNG + p_hasAbility + DotStarNG + entity_attribute, action=ProductQuestionSet.has_attribute_question))
+
+# 某项属性高的某品牌-型号
+rules.append(Rule(condition_num=2, condition=entity_attribute + DotStarNG + p_better, action=ProductQuestionSet.has_high_performance_question))
+
+# 某品牌-型号某项属性的得分
+rules.append(Rule(condition_num=4, condition=regex_product + DotStarNG + entity_attribute + DotStarNG + p_score, action=ProductQuestionSet.product_has_performance_score_question))
+
+# 某属性的最高得分
+rules.append(Rule(condition_num=2, condition=entity_attribute + DotStarNG + p_highest, action=ProductQuestionSet.product_highest_performance_question))
+
+# 指定brand，model的产品某项属性的排名
+rules.append(Rule(condition_num=4, condition=regex_product + DotStarNG + entity_attribute + DotStarNG + p_rank, action=ProductQuestionSet.product_has_performance_rank_question))
+
+# 某项属性有多少个
+rules.append(Rule(condition_num=2, condition=entity_attribute + DotStarNG + p_total, action=ProductQuestionSet.product_has_performance_total_question))
+
+# 指定brand，model的产品某项属性好不好高不高
+rules.append(Rule(condition_num=4, condition=regex_product + DotStarNG + entity_attribute + DotStarNG + p_question, action=ProductQuestionSet.product_has_performance_detail_question))
+
+# 具体取值(推导颜色：功能)
+rules.append(Rule(condition_num=1, condition=entity_attribute, action=ProductQuestionSet.has_standard_property_question))
+
+# 获取有某项功能的品类
+# e.g. 有哪些类别的宝贝具有去鱼尾纹的功能
+rules.append(Rule(condition_num=2, condition=p_cidname + DotStarNG + entity_attribute, action=ProductQuestionSet.catalog_has_performance_question))
+# e.g. 去鱼尾纹的品类有哪些
+rules.append(Rule(condition_num=2, condition=entity_attribute + DotStarNG + p_cidname, action=ProductQuestionSet.catalog_has_performance_question))
+# e.g. 可以去鱼尾纹的品类有哪些
+rules.append(Rule(condition_num=3, condition=p_hasAbility + DotStarNG + entity_attribute + DotStarNG + p_cidname, action=ProductQuestionSet.catalog_has_performance_question))

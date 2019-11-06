@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-dynamic_ip = "122.231.254.172"
+dynamic_ip = "125.120.146.49"
 
 
 class DB99(object):
@@ -93,6 +93,9 @@ class localhost(object):
 
     DB = dict()
     DB["graph"] = "graph"
+
+
+UTF8 = "utf_8_sig"
 
 
 def get_pgsql_engine(info, db):

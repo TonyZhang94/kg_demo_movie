@@ -1,0 +1,5 @@
+高不高 cons
+好不好 cons
+快不快 cons
+最高得分 cons
+最高分数 cons

@@ -4,6 +4,7 @@ import random
 import copy
 
 from ProductQuery.data.DBparam import *
+import time
 
 
 # TODO
@@ -42,7 +43,9 @@ def get_data(pcid, cid, datamonth):
         df_model["id"] = [x for x in ids]
         df = pd.merge(df, df_model, how="inner", on=["brand", "model"])
 
-        # TODO # TODO get_url
+        # TODO
+        # get_url
+        # TODO
         # split brand
         df.to_csv(f"data_pcid{pcid}cid{cid}.csv", encoding="utf_8_sig")
     print("get df", len(df))
@@ -104,6 +107,16 @@ def parse_json_target(json_text):
     return res
 
 
+def parse_json_function(json_text):
+    res = []
+    data = eval(json_text)
+    for _, func in data.items():
+        funcs = split_text(func, splits, first=True)
+        for key in funcs:
+            res.append([key, 0.0])
+    return res
+
+
 def insert_model2cid(df_ori, cid, table="model_to_catalog"):
     df = df_ori[["id"]]
     df["cid"] = cid
@@ -128,31 +141,33 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
         # funcs = split_text(row["function"], func2id.keys(), first=False)
         funcs = parse_json_tag(row["model_tag_ratings"])
         funcs_ = parse_json_target(row["model_target_ratings"])
+        funcs__ = parse_json_function(row["sku"])
         funcs.extend(funcs_)
+        funcs.extend(funcs__)
         if funcs is None:
             continue
         vis = set()
         for item in funcs:
             func, score = item
-            # if "多功能" != func:
-            #     func = func.replace("功能", "")
-            # while func and "等" == func[-1]:
-            #     func = func[:-1]
-            # if not func:
-            #     continue
-            #
-            # if len(func) >= 5:
-            #     print("long", func)
-            #     continue
-
-            if "效果" != func:
-                func = func.replace("效果", "")
+            if "多功能" != func:
+                func = func.replace("功能", "")
             while func and "等" == func[-1]:
                 func = func[:-1]
             if not func:
                 continue
 
-            if func in vis:
+            if "效果" != func:
+                func = func.replace("效果", "")
+            func = func.replace("模式", "")
+            while func and "等" == func[-1]:
+                func = func[:-1]
+            if not func:
+                continue
+
+            if len(func) > 5:
+                print("long", func)
+
+            if func in vis or "其他" in func:
                 continue
             vis.add(func)
 
@@ -171,6 +186,7 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
     # for func, funcid in func2id.items():
     #     print(funcid, func)
 
+    time.sleep(10)
     df_model2func = pd.DataFrame(values, columns=["id", "funcid", "score"])
     print("Start insert model_to_function", len(values))
     try:
@@ -182,28 +198,40 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
 
 
 def insert_standard_properties(df, table="model"):
+    del df["sku"]
     del df["model_tag_ratings"]
     del df["model_target_ratings"]
 
-    for col in df.columns:
-        print(col)
-
+    df["brand"] = df["brand"].replace("\\", "/")
     df = df.drop_duplicates(["model", "brand"])
     print("Start insert model standard properties", len(df))
 
-    df.to_sql(table, con=engine, if_exists="append", index=False, dtype=None)
-    sql = f"-- ALTER TABLE {table} ADD CONSTRAINT PK_id PRIMARY KEY (id);"
     try:
+        sql = "DELETE FROM model_to_catalog;"
         pd.read_sql(sql, con=engine)
     except Exception as e:
         pass
+    try:
+        sql = f"DELETE FROM {table};"
+        pd.read_sql(sql, con=engine)
+    except Exception as e:
+        pass
+    df["price"] = df["price"].astype("float").fillna(0)
+    df["total_sold_price"] = df["total_sold_price"].astype("float").fillna(0)
+    df["model_ratings"] = df["model_ratings"].astype("float").fillna(0)
+    df.to_sql(table, con=engine, if_exists="append", index=False, dtype=None)
+    # # sql = f"ALTER TABLE {table} ADD CONSTRAINT PK_id PRIMARY KEY (id);"
+    # try:
+    #     pd.read_sql(sql, con=engine)
+    # except Exception as e:
+    #     pass
 
 
 def insert_fixed_properties(df):
     cid = df["cid"].values[0]
     del df["cid"]
     del df["datamonth"]
-    del df["sku"]
+    # del df["sku"]
     del df["submarket"]
     del df["tag_score"]
     del df["target_score"]

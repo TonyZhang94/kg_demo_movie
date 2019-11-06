@@ -2,6 +2,7 @@
 
 from ProductQuery import JenaFuseki
 from ProductQuery import nl2sparql
+from ProductQuery import wordTagging
 
 
 if __name__ == '__main__':
@@ -10,9 +11,11 @@ if __name__ == '__main__':
 
     while True:
         question = input()
-        my_query = q2s.get_sparql(question)
-        print(my_query)
-        if my_query is not None:
+        question = wordTagging.pre_process(question)
+        store = q2s.get_sparql(question)
+        if store is not None:
+            my_query, nums = store
+            print(my_query)
             result = fuseki.get_sparql_result(my_query)
             value = fuseki.get_sparql_result_value(result)
 
@@ -28,8 +31,10 @@ if __name__ == '__main__':
                     print(value[0])
                 else:
                     output = ''
-                    for inx in range(0, len(value), 2):
-                        print(f"{inx}. {value[inx]} {value[inx+1]}")
+                    for inx in range(0, min(len(value), 10*nums), nums):
+                        for i in range(nums):
+                            print(value[inx+i], end=" ")
+                        print()
 
         else:
             print('I can\'t understand. :(')

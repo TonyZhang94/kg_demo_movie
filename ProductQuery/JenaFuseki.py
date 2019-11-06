@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 
 class JenaFuseki:
-    def __init__(self, endpoint_url='http://localhost:3030/kg_demo_movie/query'):
+    def __init__(self, endpoint_url='http://localhost:3030/kg_product_graph/query'):
         self.sparql_conn = SPARQLWrapper(endpoint_url)
 
     def get_sparql_result(self, query):
