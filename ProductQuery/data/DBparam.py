@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-dynamic_ip = "125.120.146.49"
+dynamic_ip = "115.204.154.24"
 
 
 class DB99(object):

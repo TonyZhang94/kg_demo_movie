@@ -39,6 +39,13 @@ def delete_function(table="function"):
         pass
 
 
+def process_delete_all_data():
+    delete_model_to_function()
+    delete_model_to_catalog()
+    delete_model()
+    delete_function()
+
+
 if __name__ == '__main__':
     delete_model_to_function()
     delete_model_to_catalog()

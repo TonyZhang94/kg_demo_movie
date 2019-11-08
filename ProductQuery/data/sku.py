@@ -4,7 +4,6 @@ import random
 import copy
 
 from ProductQuery.data.DBparam import *
-import time
 
 
 # TODO
@@ -17,12 +16,12 @@ def find_item_url(pcid, cid, brand, model):
     pass
 
 
-def get_data(pcid, cid, datamonth):
+def get_model_data(pcid, cid, datamonth):
     try:
         df = pd.read_csv(f"data_pcid{pcid}cid{cid}.csv", encoding="utf_8_sig", index_col=0)
-        print("read local data")
+        # print("read local data")
     except FileNotFoundError:
-        print("read db data")
+        # print("read db data")
         sql = f"SELECT * FROM product_brain.product_brain_pcid{pcid} WHERE cid = '{cid}' and datamonth = '{datamonth}';"
         engine = get_pgsql_engine(Outer99, "report_dg")
         df = pd.read_sql(sql, con=engine)
@@ -48,7 +47,7 @@ def get_data(pcid, cid, datamonth):
         # TODO
         # split brand
         df.to_csv(f"data_pcid{pcid}cid{cid}.csv", encoding="utf_8_sig")
-    print("get df", len(df))
+    # print("get df", len(df))
     return df
 
 
@@ -64,7 +63,7 @@ def split_text(text, tags, first=True):
         res.add(text)
     elif "['" == text[:2] or "[\"" == text[:2]:
         res = set(eval(text))
-        print("eval", text, res)
+        # print("eval", text, res)
     else:
         for split in splits:
             text = text.replace(split, " ")
@@ -92,7 +91,12 @@ def split_text(text, tags, first=True):
 
 def parse_json_tag(json_text):
     res = []
-    data = eval(json_text)
+    try:
+        data = eval(json_text)
+    except Exception as e:
+        # print(e)
+        # print(json_text)
+        raise e
     for tag, score in data.items():
         res.append([tag, float(score)])
     return res
@@ -124,8 +128,9 @@ def insert_model2cid(df_ori, cid, table="model_to_catalog"):
         sql = f"DELETE FROM {table};"
         pd.read_sql(sql, con=engine)
     except Exception as e:
-        print(e)
-    print("Start insert model to catalogid")
+        # print(e)
+        pass
+    # print("Start insert model to catalogid")
     df.to_sql(table, con=engine, if_exists="append", index=False, dtype=None)
 
 
@@ -139,33 +144,40 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
     values = []
     for _, row in df.iterrows():
         # funcs = split_text(row["function"], func2id.keys(), first=False)
-        funcs = parse_json_tag(row["model_tag_ratings"])
+        try:
+            funcs = parse_json_tag(row["model_tag_ratings"])
+        except Exception as e:
+            # print(e)
+            # print(_)
+            # print(row)
+            # exit()
+            pass
         funcs_ = parse_json_target(row["model_target_ratings"])
-        funcs__ = parse_json_function(row["sku"])
         funcs.extend(funcs_)
-        funcs.extend(funcs__)
+        # funcs__ = parse_json_function(row["sku"])
+        # funcs.extend(funcs__)
         if funcs is None:
             continue
         vis = set()
         for item in funcs:
             func, score = item
-            if "多功能" != func:
-                func = func.replace("功能", "")
-            while func and "等" == func[-1]:
-                func = func[:-1]
-            if not func:
-                continue
-
-            if "效果" != func:
-                func = func.replace("效果", "")
-            func = func.replace("模式", "")
-            while func and "等" == func[-1]:
-                func = func[:-1]
-            if not func:
-                continue
-
-            if len(func) > 5:
-                print("long", func)
+            # if "多功能" != func:
+            #     func = func.replace("功能", "")
+            # while func and "等" == func[-1]:
+            #     func = func[:-1]
+            # if not func:
+            #     continue
+            #
+            # if "效果" != func:
+            #     func = func.replace("效果", "")
+            # func = func.replace("模式", "")
+            # while func and "等" == func[-1]:
+            #     func = func[:-1]
+            # if not func:
+            #     continue
+            #
+            # if len(func) > 5:
+            #     print("long", func)
 
             if func in vis or "其他" in func:
                 continue
@@ -175,7 +187,7 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
                 values.append([row["id"], func2id[func], score])
             except KeyError:
                 try:
-                    print(f"insert func name = {func}  id = {len(func2id)+1}")
+                    # print(f"insert func name = {func}  id = {len(func2id)+1}")
                     sql = f"INSERT INTO {table_func}(name) VALUES ('{func}');"
                     pd.read_sql(sql, con=engine)
                 except Exception as e:
@@ -183,12 +195,8 @@ def insert_model2func(df, table_model2func="model_to_function", table_func="func
                 func2id[func] = len(func2id) + 1
                 values.append([row["id"], func2id[func], score])
 
-    # for func, funcid in func2id.items():
-    #     print(funcid, func)
-
-    time.sleep(10)
     df_model2func = pd.DataFrame(values, columns=["id", "funcid", "score"])
-    print("Start insert model_to_function", len(values))
+    # print("Start insert model_to_function", len(values))
     try:
         sql = f"DELETE FROM {table_model2func};"
         pd.read_sql(sql, con=engine)
@@ -204,7 +212,7 @@ def insert_standard_properties(df, table="model"):
 
     df["brand"] = df["brand"].replace("\\", "/")
     df = df.drop_duplicates(["model", "brand"])
-    print("Start insert model standard properties", len(df))
+    # print("Start insert model standard properties", len(df))
 
     try:
         sql = "DELETE FROM model_to_catalog;"
@@ -276,15 +284,21 @@ def delete_data():
         except Exception as e:
             pass
 
-
 engine = get_mysql_engine(localhost, "graph")
 splits = [",", ";", ".", "，", "；", "。", "、", " ", "/", "\\"]
 
+
+def process_sku(pcid, cid, datamonth):
+    df = get_model_data(pcid, cid, datamonth)
+    delete_data()
+    insert_fixed_properties(df)
+
+
 if __name__ == '__main__':
     # pcid, cid = "4", "50012097"
-    pcid, cid, datamonth = "100", "2018101516", "201812"  # 美容仪
-    # pcid, cid, datamonth = "100", "2019091609", "201812"  # 智能门锁
+    # pcid, cid, datamonth = "100", "2018101516", "201812"  # 美容仪
+    pcid, cid, datamonth = "100", "2019091609", "201908"  # 智能门锁
     # pcid, cid, datamonth = "100", "2019090610", "201812"  # 投影仪
-    df = get_data(pcid, cid, datamonth)
+    df = get_model_data(pcid, cid, datamonth)
     delete_data()
     insert_fixed_properties(df)

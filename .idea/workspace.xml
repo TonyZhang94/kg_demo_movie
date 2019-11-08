@@ -2,31 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a07b12-adc5-4197-a699-b9936f58bbc4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProductQuery/data/add_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProductQuery/data/search_url.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProductQuery/vocab/merge.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProductQuery/vocab/vocab_constant_cons.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProductQuery/data/generate_scale.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/JenaFuseki.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/JenaFuseki.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProductQuery/data/DBparam.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/data/DBparam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductQuery/data/add_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/data/add_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProductQuery/data/delete_all_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/data/delete_all_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/data/save_vocab.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/data/save_vocab.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProductQuery/data/sku.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/data/sku.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/nl2sparql.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/nl2sparql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/predicate/commonPredicate.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/predicate/commonPredicate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/predicate/productPredicate.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/predicate/productPredicate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/questions/productQuestions.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/questions/productQuestions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/rules/primary.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/rules/primary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/template/prefix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/template/sparql.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/template/sparql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/vocab/vocab_brand_nbr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/vocab/vocab_brand_nbr.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/vocab/vocab_cidname_ncid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/vocab/vocab_cidname_ncid.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/vocab/vocab_function_nfu.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/vocab/vocab_model_nmo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/vocab/vocab_model_nmo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductQuery/wordTagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductQuery/wordTagging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/params.json" beforeDir="false" afterPath="$PROJECT_DIR$/params.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductQuery/data/temp.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,15 +23,16 @@
     <SUITE FILE_PATH="coverage/kg_demo_movie$jena_sparql_endpoint.coverage" NAME="jena_sparql_endpoint Coverage Results" MODIFIED="1572275888844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/KB_query" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$save_vocab.coverage" NAME="save_vocab Coverage Results" MODIFIED="1572936098328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$question_temp.coverage" NAME="question_temp Coverage Results" MODIFIED="1572275876200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/KB_query" />
-    <SUITE FILE_PATH="coverage/kg_demo_movie$sku.coverage" NAME="sku Coverage Results" MODIFIED="1572854852497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
+    <SUITE FILE_PATH="coverage/kg_demo_movie$sku.coverage" NAME="sku Coverage Results" MODIFIED="1573200987346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$query_main.coverage" NAME="query_main Coverage Results" MODIFIED="1572439123099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/KB_query" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$questions.coverage" NAME="questions Coverage Results" MODIFIED="1572451995657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/questions" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$movie_crawler.coverage" NAME="movie_crawler Coverage Results" MODIFIED="1513754885263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawler" />
-    <SUITE FILE_PATH="coverage/kg_demo_movie$delete_all_data.coverage" NAME="delete_all_data Coverage Results" MODIFIED="1572854807339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
-    <SUITE FILE_PATH="coverage/kg_demo_movie$add_data.coverage" NAME="add_data Coverage Results" MODIFIED="1572930359437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
+    <SUITE FILE_PATH="coverage/kg_demo_movie$delete_all_data.coverage" NAME="delete_all_data Coverage Results" MODIFIED="1573200978239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
+    <SUITE FILE_PATH="coverage/kg_demo_movie$add_data.coverage" NAME="add_data Coverage Results" MODIFIED="1573201038092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$productQuestions.coverage" NAME="productQuestions Coverage Results" MODIFIED="1572619143857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/questions" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$test.coverage" NAME="test Coverage Results" MODIFIED="1572339075608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$main.coverage" NAME="main Coverage Results" MODIFIED="1572936122485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery" />
+    <SUITE FILE_PATH="coverage/kg_demo_movie$generate_scale.coverage" NAME="generate_scale Coverage Results" MODIFIED="1573237593640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
     <SUITE FILE_PATH="coverage/kg_demo_movie$temp.coverage" NAME="temp Coverage Results" MODIFIED="1573055639627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ProductQuery/data" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -69,12 +52,49 @@
     <expand />
     <select />
   </component>
+  <component name="DockManager">
+    <window id="5">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="params.json" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/params.json">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="253">
+                    <caret line="50" column="46" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="46" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="scale_result_model_pcid100cid2019091609.csv" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_result_model_pcid100cid2019091609.csv">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state>
+                    <caret column="49" selection-start-column="41" selection-end-column="49" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="scale_result_target_pcid100cid2019091609.csv" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_result_target_pcid100cid2019091609.csv">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state>
+                    <caret column="246" lean-forward="true" selection-start-column="1" selection-end-column="23" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProductQuery/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
+            <state relative-caret-position="-342">
               <caret line="6" selection-start-line="6" selection-end-line="6" />
               <folding>
                 <element signature="e#26#61#0" expanded="true" />
@@ -83,13 +103,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sku.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ProductQuery/data/sku.py">
+      <file leaf-file-name="generate_scale.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ProductQuery/data/generate_scale.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="128" column="76" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="76" />
+            <state relative-caret-position="486">
+              <caret line="306" column="26" lean-forward="true" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
               <folding>
-                <element signature="e#25#38#0" expanded="true" />
+                <element signature="e#966#981#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,50 +118,8 @@
       <file leaf-file-name="DBparam.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProductQuery/data/DBparam.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="68" column="21" lean-forward="true" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProductQuery/data/add_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="29" column="35" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_url.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProductQuery/data/search_url.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="productQuestions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProductQuery/questions/productQuestions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7912">
-              <caret line="347" column="48" selection-start-line="347" selection-start-column="48" selection-end-line="347" selection-end-column="48" />
-              <folding>
-                <element signature="e#25#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="primary.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProductQuery/rules/primary.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-              <folding>
-                <element signature="e#25#51#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1561">
+              <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -182,11 +160,11 @@
       <find>word, freq =</find>
       <find>re_userdict</find>
       <find>word, freq</find>
-      <find>print</find>
       <find>fil</find>
       <find>ASK</find>
       <find>limit</find>
       <find>?brand ?model ?attr</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ProductQuery/predicate/allPredicate.py" />
-        <option value="$PROJECT_DIR$/ProductQuery/properties/xsdProperties.py" />
         <option value="$PROJECT_DIR$/ProductQuery/properties/IRIsProperties.py" />
         <option value="$PROJECT_DIR$/ProductQuery/question_temp.py" />
         <option value="$PROJECT_DIR$/ProductQuery/rules/mainRules.py" />
@@ -224,7 +200,6 @@
         <option value="$PROJECT_DIR$/params.txt" />
         <option value="$PROJECT_DIR$/ProductQuery/data/delete_function_data.py" />
         <option value="$PROJECT_DIR$/ProductQuery/template/constant.py" />
-        <option value="$PROJECT_DIR$/ProductQuery/data/delete_all_data.py" />
         <option value="$PROJECT_DIR$/ProductQuery/vocab/merge.txt" />
         <option value="$PROJECT_DIR$/ProductQuery/vocab/constant.txt" />
         <option value="$PROJECT_DIR$/ProductQuery/data/save_vocab.py" />
@@ -234,18 +209,21 @@
         <option value="$PROJECT_DIR$/ProductQuery/vocab/vocab_constant_cons.txt" />
         <option value="$PROJECT_DIR$/ProductQuery/nl2sparql.py" />
         <option value="$PROJECT_DIR$/ProductQuery/template/sparql.py" />
-        <option value="$PROJECT_DIR$/ProductQuery/data/sku.py" />
         <option value="$PROJECT_DIR$/ProductQuery/JenaFuseki.py" />
         <option value="$PROJECT_DIR$/params.json" />
-        <option value="$PROJECT_DIR$/ProductQuery/data/add_data.py" />
         <option value="$PROJECT_DIR$/ProductQuery/vocab/vocab_cidname_ncid.txt" />
         <option value="$PROJECT_DIR$/ProductQuery/data/search_url.py" />
         <option value="$PROJECT_DIR$/ProductQuery/predicate/productPredicate.py" />
         <option value="$PROJECT_DIR$/ProductQuery/rules/primary.py" />
         <option value="$PROJECT_DIR$/ProductQuery/questions/productQuestions.py" />
         <option value="$PROJECT_DIR$/ProductQuery/predicate/commonPredicate.py" />
-        <option value="$PROJECT_DIR$/ProductQuery/data/DBparam.py" />
         <option value="$PROJECT_DIR$/ProductQuery/data/temp.py" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/comment_scale_pcid100cid2019091609.csv" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/DBparam.py" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/delete_all_data.py" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/add_data.py" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/sku.py" />
+        <option value="$PROJECT_DIR$/ProductQuery/data/generate_scale.py" />
       </list>
     </option>
   </component>
@@ -258,7 +236,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1912" />
     <option name="y" value="-118" />
     <option name="width" value="1696" />
@@ -270,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,14 +271,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/KG for movie/kg_demo_movie/ProductQuery/data/scale_comment_pcid100cid2019091609.csv" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="D:\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/kgProduct" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
@@ -327,7 +306,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.temp">
+  <component name="RunManager" selected="Python.generate_scale">
     <configuration name="add_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="kg_demo_movie" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -347,26 +326,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="kg_demo_movie" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProductQuery" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProductQuery/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="save_vocab" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="delete_all_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="kg_demo_movie" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -379,7 +339,26 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProductQuery/data/save_vocab.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProductQuery/data/delete_all_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="generate_scale" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kg_demo_movie" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProductQuery/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProductQuery/data/generate_scale.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -452,19 +431,19 @@
       <envs />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.sku" />
-      <item itemvalue="Python.save_vocab" />
-      <item itemvalue="Python.add_data" />
       <item itemvalue="Python.temp" />
+      <item itemvalue="Python.delete_all_data" />
+      <item itemvalue="Python.sku" />
+      <item itemvalue="Python.add_data" />
+      <item itemvalue="Python.generate_scale" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.temp" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.save_vocab" />
+        <item itemvalue="Python.generate_scale" />
         <item itemvalue="Python.add_data" />
         <item itemvalue="Python.sku" />
+        <item itemvalue="Python.delete_all_data" />
+        <item itemvalue="Python.temp" />
       </list>
     </recent_temporary>
   </component>
@@ -491,16 +470,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-118" width="1696" height="1066" extended-state="7" />
+    <frame x="1912" y="-118" width="1696" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32901832" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50061125" side_tool="true" weight="0.20905173" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49938875" visible="true" weight="0.40021574" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49938875" visible="true" weight="0.34735706" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3291536" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3291536" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15036675" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.21035598" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24877751" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.3294621" />
       <window_info anchor="right" id="SciView" order="1" weight="0.32995737" />
@@ -509,11 +489,11 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Message" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,53 +539,8 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../d2rq-0.8.1/kg_product_graph.nt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2064060" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/data.csv" />
-    <entry file="file://$PROJECT_DIR$/ProductQuery/predicate/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/questions/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/rules/auxiliaryRules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-599">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/vocab/vocab_pcidname_npcid.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp.js" />
-    <entry file="file://$PROJECT_DIR$/temp.json" />
-    <entry file="file://$PROJECT_DIR$/temp1.js" />
-    <entry file="file://$PROJECT_DIR$/temp2.js" />
-    <entry file="file://$PROJECT_DIR$/temp3.js" />
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/tb_comment_nlp.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProductQuery/vocab/vocab_function_nfu.txt" />
     <entry file="file://$PROJECT_DIR$/ProductQuery/template/suffix.py" />
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/data_pcid100cid2018101516.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProductQuery/vocab/splits.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -676,24 +611,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-900987458/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="4751" column="8" selection-start-line="4751" selection-start-column="8" selection-end-line="4751" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProductQuery/nl2sparql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/delete_all_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" column="12" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -732,24 +653,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/add_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="29" column="35" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ProductQuery/rules/rule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/params.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
         </state>
       </provider>
     </entry>
@@ -802,9 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-          <folding>
-            <element signature="e#25#51#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -815,9 +719,134 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/temp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/data_pcid100cid2018101516.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://F:/Environment/Anaconda3/Lib/site-packages/sqlalchemy/engine/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="469" selection-start-line="469" selection-end-line="469" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/data_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/temp.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94829">
+          <caret line="4123" lean-forward="true" selection-start-line="4123" selection-end-line="4123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-900987458/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="3617" column="8" selection-start-line="3617" selection-start-column="8" selection-end-line="3617" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/comment_pcid100cid2019091609_201908only.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-start-column="33" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/all_comment_pcid100cid2019091609_not_model_reviews.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/model_scale_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/comment_scale_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_model_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5696" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_comment_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/params.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="50" column="46" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/all_model_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/add_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/delete_all_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_result_model_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="49" selection-start-column="41" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/scale_result_target_pcid100cid2019091609.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="246" lean-forward="true" selection-start-column="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/DBparam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1561">
+          <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/sku.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="49" column="11" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="11" />
+          <folding>
+            <element signature="e#25#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProductQuery/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
+        <state relative-caret-position="-342">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="e#26#61#0" expanded="true" />
@@ -825,31 +854,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/DBparam.py">
+    <entry file="file://$PROJECT_DIR$/ProductQuery/data/generate_scale.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="68" column="21" lean-forward="true" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/temp.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5929" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/temp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductQuery/data/sku.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="128" column="76" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="76" />
+        <state relative-caret-position="486">
+          <caret line="306" column="26" lean-forward="true" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
           <folding>
-            <element signature="e#25#38#0" expanded="true" />
+            <element signature="e#966#981#0" expanded="true" />
           </folding>
         </state>
       </provider>
