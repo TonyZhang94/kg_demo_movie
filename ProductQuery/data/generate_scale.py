@@ -93,7 +93,7 @@ def get_model_data(pcid, cid, datamonth):
             return df
 
         df = df.groupby(["brand", "model"]).apply(func)
-        df = df[df["datamonth"] == "201908"]
+        df = df[df["datamonth"] == datamonth]
         df.to_csv(f"all_model_pcid{pcid}cid{cid}.csv", encoding="utf_8_sig")
     return df
 
@@ -170,7 +170,6 @@ def make_brand_model_target_scale(pcid, cid, cidname, datamonth):
     df = pd.merge(model_to_catalog, model, how="left", on=["id"])
     df = pd.merge(df, model_to_function, how="inner", on=["id"])
     df = pd.merge(df, function, how="left", on=["funcid"])
-    df.to_csv("temp.csv", encoding=UTF8)
 
     df_target = df_comment.groupby(["brand", "model", "target"]).apply(statFunc, "target_").drop_duplicates(["brand", "model", "target"])
     df_target["name"] = df_target["target"]
@@ -301,7 +300,7 @@ if __name__ == '__main__':
         tasks.append(("100", "2018112614", "家用工具组套", "201909"))
         tasks.append(("100", "2019070912", "果冻/布丁", "201906"))
         tasks.append(("100", "2019090610", "投影仪", "201908"))
-        # tasks.append(("100", "2019091609", "智能门锁", "201908"))
+        tasks.append(("100", "2019091609", "智能门锁", "201908"))
         tasks.append(("7", "50006219", "电钻", "201909"))
         tasks.append(("7", "50008950", "测距仪", "201909"))
         for task in tasks:
@@ -332,6 +331,6 @@ if __name__ == '__main__':
                 print("cost:", end-start)
                 print("=====================================\n")
     except Exception as e:
-        pass
+        raise e
     finally:
         warnings.filterwarnings("default")
