@@ -2,8 +2,10 @@
 
 from ProductQuery.template.prefix import SPARQL_PREXIX
 from ProductQuery.template.sparql import SPARQL_SELECT_TEM, SPARQL_COUNT_TEM, SPARQL_ASK_TEM, ORDER_ASC_TEM, ORDER_DESC_TEM, LIMIT_TEM
-from ProductQuery.rules import *
+# from ProductQuery.rules import *
+from ProductQuery.predicate import *
 from ProductQuery import wordTagging
+from ProductQuery.questions.auxiliaryQuestions import AuxiliaryQuestionSet
 
 
 class ProductQuestionSet:
@@ -11,15 +13,13 @@ class ProductQuestionSet:
         pass
 
     @staticmethod
-    def has_attribute_question(word_objects):
+    def has_high_performance_question(word_objects):
         """
-        拥有某项属性的某类产品
-        e.g. 我想查看可以喷雾的电子美容仪有哪些
-        e.g. 电子美容仪中可以喷雾的有哪些型号
+        问题一：询问某项属性竞争力高的产品有哪些
         :param word_objects:
         :return:
         """
-        select = u"?brand ?model ?biz"
+        select = u"?brand ?model"
 
         cidname = None
         for w in word_objects:
@@ -31,286 +31,19 @@ class ProductQuestionSet:
             return None, 0
 
         sparql = None
-        suffix = ORDER_DESC_TEM.format(key="?biz")
+        suffix = ORDER_DESC_TEM.format(key="?score") + LIMIT_TEM.format(limit=10)
         for w in word_objects:
             if w.pos == pos_attribute:
-                e = u"?s :model_to_catalog ?cid." \
-                    u"?cid :catalogid_cidname '{cidname}'." \
-                    u"?s :model_to_function ?m." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?s :model_biz30day ?biz." \
-                    u"?m :function_name '{function}'.".format(cidname=cidname,
-                                                              function=w.token)
-
-                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
-                                                  select=select,
-                                                  expression=e,
-                                                  suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def has_high_performance_question(word_objects):
-        """
-        某项属性高的某品牌-型号
-        :param word_objects:
-        :return:
-        """
-        select = u"?brand ?model ?attr ?score"
-
-        sparql = None
-        # suffix = ORDER_DESC_TEM.format(key="?score") + LIMIT_TEM.format(limit=10)
-        suffix = ORDER_DESC_TEM.format(key="?score")
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?o :function_name '{function}'." \
-                    u"?o :function_name ?attr." \
-                    u"?x :model_to_function_score ?score." \
-                    u"?x :model_to_function_id ?s." \
-                    u"?x :model_to_function_funcid ?o.".format(function=w.token)
-
-                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
-                                                  select=select,
-                                                  expression=e,
-                                                  suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def product_has_performance_score_question(word_objects):
-        """
-        某品牌-型号某项属性的得分
-        :param word_objects:
-        :return:
-        """
-        select = u"?brand ?model ?attr ?score"
-
-        brand = None
-        for w in word_objects:
-            if w.pos == pos_brand:
-                brand = w.token
-                break
-
-        model = None
-        for w in word_objects:
-            if w.pos == pos_model:
-                model = w.token
-                break
-
-        if not brand or not model:
-            return None, 0
-        else:
-            brand = wordTagging.after_process(brand)
-            model = wordTagging.after_process(model)
-
-        sparql = None
-        suffix = ""
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?s :model_brand '{brand}'." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model '{model}'." \
-                    u"?s :model_model ?model." \
-                    u"?o :function_name '{function}'." \
-                    u"?o :function_name ?attr." \
-                    u"?x :model_to_function_score ?score." \
-                    u"?x :model_to_function_id ?s." \
-                    u"?x :model_to_function_funcid ?o.".format(function=w.token,
-                                                               brand=brand,
-                                                               model=model)
-
-                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
-                                                  select=select,
-                                                  expression=e,
-                                                  suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def product_highest_performance_question(word_objects):
-        """
-        某属性的最高得分
-        :param word_objects:
-        :return:
-        """
-        select = u"?brand ?model ?attr ?highest"
-
-        sparql = None
-        suffix = ORDER_DESC_TEM.format(key="?highest") + LIMIT_TEM.format(limit=1)
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?o :function_name '{function}'." \
-                    u"?o :function_name ?attr." \
-                    u"?x :model_to_function_score ?highest." \
-                    u"?x :model_to_function_id ?s." \
-                    u"?x :model_to_function_funcid ?o.".format(function=w.token)
-
-                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
-                                                  select=select,
-                                                  expression=e,
-                                                  suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def product_has_performance_rank_question(word_objects):
-        """
-        指定brand，model的产品某项属性的排名
-        :param
-        word_objects:
-        :return:
-        """
-        select = u"?other_score"
-
-        sparql = None
-        rank = "?rank"
-        suffix = ""
-
-        brand = None
-        for w in word_objects:
-            if w.pos == pos_brand:
-                brand = w.token
-                break
-
-        model = None
-        for w in word_objects:
-            if w.pos == pos_model:
-                model = w.token
-                break
-
-        if not brand or not model:
-            return None, 0
-        else:
-            brand = wordTagging.after_process(brand)
-            model = wordTagging.after_process(model)
-
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?o :function_name '{function}'." \
-                    u"?o :function_name ?attr." \
-                    u"?x :model_to_function_score ?other_score." \
-                    u"?x :model_to_function_id ?s." \
-                    u"?x :model_to_function_funcid ?o.".format(function=w.token) + \
-                    u"{" \
-                    u"  SELECT DISTINCT ?score WHERE {" + \
-                    u"    ?s :model_to_function ?o." \
-                    u"    ?o :function_name '{function}'." \
-                    u"    ?s :model_brand '{brand}'." \
-                    u"    ?s :model_model '{model}'." \
-                    u"    ?x :model_to_function_score ?score." \
-                    u"    ?x :model_to_function_id ?s." \
-                    u"    ?x :model_to_function_funcid ?o." .format(function=w.token,
-                                                                    brand=brand,
-                                                                    model=model) + \
-                    u"  }" \
-                    u"}" \
-                    u"Filter(?other_score >= ?score)."
-
-                sparql = SPARQL_COUNT_TEM.format(prefix=SPARQL_PREXIX,
-                                                 select=select,
-                                                 res=rank,
-                                                 expression=e,
-                                                 suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def product_has_performance_total_question(word_objects):
-        """
-        某项属性有多少个
-        :param
-        word_objects:
-        :return:
-        """
-        select = u"?s"
-
-        sparql = None
-        res = "?total"
-        suffix = ""
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?o :function_name '{function}'.".format(function=w.token)
-
-                sparql = SPARQL_COUNT_TEM.format(prefix=SPARQL_PREXIX,
-                                                 select=select,
-                                                 res=res,
-                                                 expression=e,
-                                                 suffix=suffix)
-                break
-        return sparql, len(select.split())
-
-    @staticmethod
-    def product_has_performance_detail_question(word_objects):
-        """
-        指定brand，model的产品某项属性好不好高不高
-        :param word_objects:
-        :return:
-        """
-        select = "?brand ?model ?attr ?score ?highest ?rank ?total"
-
-        sparql = None
-        suffix = ""
-
-        brand = None
-        for w in word_objects:
-            if w.pos == pos_brand:
-                brand = w.token
-                break
-
-        model = None
-        for w in word_objects:
-            if w.pos == pos_model:
-                model = w.token
-                break
-
-        if not brand or not model:
-            return None, 0
-        else:
-            brand = wordTagging.after_process(brand)
-            model = wordTagging.after_process(model)
-
-        e = "{" + ProductQuestionSet.product_has_performance_score_question(word_objects)[0][296:] + "}" + \
-            "{" + ProductQuestionSet.product_highest_performance_question(word_objects)[0][296:].replace("?brand ?model ", "") + "}" + \
-            "{" + ProductQuestionSet.product_has_performance_rank_question(word_objects)[0][296:] + "}" + \
-            "{" + ProductQuestionSet.product_has_performance_total_question(word_objects)[0][296:] + "}"
-
-        sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
-                                          select=select,
-                                          expression=e,
-                                          suffix=suffix)
-        return sparql, len(select.split())
-
-    @staticmethod
-    def has_standard_property_question(word_objects):
-        """
-        推理：有具体的属性取值
-        :param word_objects:
-        :return:
-        """
-        select = "?brand ?model ?attr"
-
-        sparql = None
-        suffix = ORDER_DESC_TEM.format(key="?biz")
-        for w in word_objects:
-            if w.pos == pos_attribute:
-                e = u"?s :model_to_function ?o." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?s :model_biz30day ?biz." \
-                    u"?o :function_name '{property}'." \
-                    u"?o :function_name ?attr.".format(property=w.token)
+                e = u"?cid :catalogid_cidname '{cidname}'." \
+                    u"?modelid :model_to_catalog ?cid." \
+                    u"?modelid :model_brand ?brand." \
+                    u"?modelid :model_model ?model." \
+                    u"?modelid :model_to_function ?attrid." \
+                    u"?attrid :function_name '{attr}'." \
+                    u"?record :model_to_function_id ?modelid." \
+                    u"?record :model_to_function_funcid ?attrid." \
+                    u"?record :model_to_function_score ?score." .format(cidname=cidname,
+                                                                         attr=w.token)
 
                 sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
                                                   select=select,
@@ -322,12 +55,87 @@ class ProductQuestionSet:
     @staticmethod
     def catalog_has_performance_question(word_objects):
         """
-        具有某个属性的品类有哪些
+        问题二：询问有某项功能的品类有哪些
         :param
         word_objects:
         :return:
         """
-        select = "?cidname ?brand ?model ?attr"
+        select = "?cidname"
+
+        sparql = None
+        suffix = ""
+        for w in word_objects:
+            if w.pos == pos_attribute:
+                e = u"?cid :catalogid_cidname ?cidname." \
+                    u"?modelid :model_to_catalog ?cid." \
+                    u"?modelid :model_to_function ?attrid." \
+                    u"?attrid :function_name '{attr}'.".format(attr=w.token)
+
+                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                                  select=select,
+                                                  expression=e,
+                                                  suffix=suffix)
+                break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def ask_product_has_performance(word_objects):
+        """
+        问题三：询问某个产品是否具有某项功能
+        :param
+        word_objects:
+        :return:
+        """
+        select = "?cidname"
+
+        brand = None
+        for w in word_objects:
+            if w.pos == pos_brand:
+                brand = w.token
+                break
+
+        model = None
+        for w in word_objects:
+            if w.pos == pos_model:
+                model = w.token
+                break
+
+        if not model:
+            return None, 0
+        else:
+            if brand:
+                brand = wordTagging.after_process(brand)
+            model = wordTagging.after_process(model)
+
+        sparql = None
+        for w in word_objects:
+            if w.pos == pos_attribute:
+                if not brand:
+                    e = u"?modelid :model_model '{model}'." \
+                        u"?modelid :model_to_function ?attrid." \
+                        u"?attrid :function_name '{attr}'.".format(model=model,
+                                                                   attr=w.token)
+                else:
+                    e = u"?modelid :model_brand '{brand}'." \
+                        u"?modelid :model_model '{model}'." \
+                        u"?modelid :model_to_function ?attrid." \
+                        u"?attrid :function_name '{attr}'.".format(brand=brand,
+                                                                   model=model,
+                                                                   attr=w.token)
+
+                sparql = SPARQL_ASK_TEM.format(prefix=SPARQL_PREXIX,
+                                               expression=e)
+                break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def has_attribute_question(word_objects):
+        """
+        # 问题四：询问具某品类中有某项功能的产品有哪些
+        :param word_objects:
+        :return:
+        """
+        select = u"?brand ?model"
 
         cidname = None
         for w in word_objects:
@@ -335,24 +143,253 @@ class ProductQuestionSet:
                 cidname = w.token
                 break
 
-        if not cidname:
+        if cidname is None:
             return None, 0
 
         sparql = None
-        suffix = ""
+        suffix = ORDER_DESC_TEM.format(key="?score")
         for w in word_objects:
-            if w.pos == pos_cidname:
-                e = u"?s :model_to_catalog ?cid." \
-                    u"?cid :catalogid_cidname ?cidname." \
-                    u"?s :model_brand ?brand." \
-                    u"?s :model_model ?model." \
-                    u"?s :model_to_function ?o." \
-                    u"?o :function_name '{property}'." \
-                    u"?o :function_name ?attr.".format(property=w.token)
+            if w.pos == pos_attribute:
+                e = u"?cid :catalogid_cidname '{cidname}'." \
+                    u"?modelid :model_to_catalog ?cid." \
+                    u"?modelid :model_brand ?brand." \
+                    u"?modelid :model_model ?model." \
+                    u"?modelid :model_to_function ?attrid." \
+                    u"?attrid :function_name '{attr}'." \
+                    u"?record :model_to_function_score ?score." \
+                    u"?record :model_to_function_id ?modelid." \
+                    u"?record :model_to_function_funcid ?attrid.".format(cidname=cidname,
+                                                                         attr=w.token)
 
                 sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
                                                   select=select,
                                                   expression=e,
                                                   suffix=suffix)
                 break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def product_whether_nice_question(word_objects):
+        """
+        问题五：询问某品类中某个产品的某项属性好不好
+        :param word_objects:
+        :return:
+        """
+        select = "?score ?highest ?rank ?total"
+
+        sparql = None
+        suffix = ""
+
+        brand = None
+        for w in word_objects:
+            if w.pos == pos_brand:
+                brand = w.token
+                break
+
+        model = None
+        for w in word_objects:
+            if w.pos == pos_model:
+                model = w.token
+                break
+
+        if not brand or not model:
+            return None, 0
+        else:
+            brand = wordTagging.after_process(brand)
+            model = wordTagging.after_process(model)
+
+        e = "{" + AuxiliaryQuestionSet.product_has_performance_score_question(word_objects)[0][296:] + "}" + \
+            "{" + AuxiliaryQuestionSet.product_highest_performance_question(word_objects)[0][296:].replace(
+            "?brand ?model ", "") + "}" + \
+            "{" + AuxiliaryQuestionSet.product_has_performance_rank_question(word_objects)[0][296:] + "}" + \
+            "{" + AuxiliaryQuestionSet.product_has_performance_total_question(word_objects)[0][296:] + "}"
+
+        sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                          select=select,
+                                          expression=e,
+                                          suffix=suffix)
+        return sparql, len(select.split())
+
+    @staticmethod
+    def brand_has_count_of_product_question(word_objects):
+        """
+        问题六：某个品牌有多少某品类的产品
+        :param word_objects:
+        :return:
+        """
+        select = u"?modelid"
+
+        sparql = None
+        res = "?total"
+        for w in word_objects:
+            if w.pos == pos_cidname:
+                e = u"?cid :catalogid_cidname '{cidname}'." \
+                    u"?modelid :model_to_catalog ?cid.".format(cidname=w.token)
+
+                sparql = SPARQL_COUNT_TEM.format(prefix=SPARQL_PREXIX,
+                                                 select=select,
+                                                 res=res,
+                                                 expression=e)
+                break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def care_product_aspect_question(word_objects):
+        """
+        问题七：在某个品类中用户一般关心什么属性/功能
+        :param word_objects:
+        :return:
+        """
+        select = u"?attr"
+
+        sparql = None
+        suffix = ""
+        for w in word_objects:
+            if w.pos == pos_cidname:
+                e = u"?cid :catalogid_cidname '{cidname}'." \
+                    u"?modelid :model_to_catalog ?cid." \
+                    u"?modelid :model_to_function ?attrid." \
+                    u"?attrid :function_name ?attr.".format(cidname=w.token)
+
+                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                                  select=select,
+                                                  expression=e,
+                                                  suffix=suffix)
+                break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def top_biz_with_attr_question(word_objects):
+        """
+        问题八：列举某项指标排名前几的某品类产品
+        :param word_objects:
+        :return:
+        """
+        select = u"?brand ?model"
+
+        cidname = None
+        for w in word_objects:
+            if w.pos == pos_cidname:
+                cidname = w.token
+                break
+
+        if cidname is None:
+            return None, 0
+
+        sparql = None
+        suffix = ORDER_DESC_TEM.format(key="?biz30day") + LIMIT_TEM.format(limit=5)
+        for w in word_objects:
+            if w.pos == pos_attribute:
+                e = u"?cid :catalogid_cidname '{cidname}'." \
+                    u"?modelid :model_to_catalog ?cid." \
+                    u"?modelid :model_brand ?brand." \
+                    u"?modelid :model_model ?model." \
+                    u"?modelid :model_model ?biz30day." \
+                    u"?modelid :model_to_function ?attrid." \
+                    u"?attrid :function_name '{attr}'.".format(cidname=cidname,
+                                                               attr=w.token)
+
+                sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                                  select=select,
+                                                  expression=e,
+                                                  suffix=suffix)
+                break
+        return sparql, len(select.split())
+
+    @staticmethod
+    def has_color_question(word_objects):
+        """
+        问题九：某产品某属性具体值是什么
+        :param word_objects:
+        :return:
+        """
+        select = u"?attr"
+
+        brand = None
+        for w in word_objects:
+            if w.pos == pos_brand:
+                brand = w.token
+                break
+
+        model = None
+        for w in word_objects:
+            if w.pos == pos_model:
+                model = w.token
+                break
+
+        if not model:
+            return None, 0
+        else:
+            if brand:
+                brand = wordTagging.after_process(brand)
+            model = wordTagging.after_process(model)
+
+        sparql = None
+        suffix= ""
+        if not brand:
+            e = u"?modelid :model_model '{model}'." \
+                u"?modelid :hasColor ?attrid." \
+                u"?attrid :function_name ?attr".format(model=model)
+        else:
+            e = "?modelid :model_brand '{brand}'." \
+                u"?modelid :model_model '{model}'." \
+                u"?modelid :hasColor ?attrid."\
+                u"?attrid :function_name ?attr".format(brand=brand,
+                                                       model=model)
+
+        sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                          select=select,
+                                          expression=e,
+                                          suffix=suffix)
+        return sparql, len(select.split())
+
+    @staticmethod
+    def show_detail_question(word_objects):
+        """
+        问题十：某产品某属性具体值是什么
+        :param word_objects:
+        :return:
+        """
+        select = u"?cid ?brand ?model"
+
+        brand = None
+        for w in word_objects:
+            if w.pos == pos_brand:
+                brand = w.token
+                break
+
+        model = None
+        for w in word_objects:
+            if w.pos == pos_model:
+                model = w.token
+                break
+
+        if not model:
+            return None, 0
+        else:
+            if brand:
+                brand = wordTagging.after_process(brand)
+            model = wordTagging.after_process(model)
+
+        sparql = None
+        suffix = ""
+        if not brand:
+            e = u"?cidid :catalogid_cid ?cid." \
+                u"?modelid :model_to_catalog ?cidid." \
+                u"?modelid :model_brand ?brand." \
+                u"?modelid :model_model '{model}'."\
+                u"?modelid :model_model ?model.".format(model=model)
+        else:
+            e = u"?cidid :catalogid_cid ?cid." \
+                u"?modelid :model_to_catalog ?cidid." \
+                u"?modelid :model_brand '{brand}'." \
+                u"?modelid :model_brand ?brand." \
+                u"?modelid :model_model '{model}'." \
+                u"?modelid :model_model ?model.".format(brand=brand,
+                                                        model=model)
+
+        sparql = SPARQL_SELECT_TEM.format(prefix=SPARQL_PREXIX,
+                                          select=select,
+                                          expression=e,
+                                          suffix=suffix)
         return sparql, len(select.split())

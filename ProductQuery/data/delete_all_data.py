@@ -43,7 +43,7 @@ def process_delete_all_data():
     delete_model_to_function()
     delete_model_to_catalog()
     delete_model()
-    delete_function()
+    # delete_function()
 
 
 if __name__ == '__main__':

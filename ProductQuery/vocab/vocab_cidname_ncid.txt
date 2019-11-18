@@ -10,5 +10,6 @@
 螺丝刀 ncid
 家用工具组合套装 ncid
 果冻 ncid
+布丁 ncid
 投影仪 ncid
 智能门锁 ncid

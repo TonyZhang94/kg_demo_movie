@@ -295,8 +295,8 @@ if __name__ == '__main__':
     try:
         warnings.filterwarnings("ignore")
         tasks = list()
-        tasks.append(("100", "2018101516", "电子美容仪", "201812"))
-        tasks.append(("100", "2018112610", "螺丝刀", "201909"))
+        # tasks.append(("100", "2018101516", "电子美容仪", "201812"))
+        # tasks.append(("100", "2018112610", "螺丝刀", "201909"))
         tasks.append(("100", "2018112614", "家用工具组套", "201909"))
         tasks.append(("100", "2019070912", "果冻/布丁", "201906"))
         tasks.append(("100", "2019090610", "投影仪", "201908"))
@@ -311,11 +311,14 @@ if __name__ == '__main__':
                 pcid, cid, cidname, datamonth = task
 
                 process_delete_all_data()
-                try:
-                    process_sku(pcid, cid, datamonth)
-                except Exception as e:
-                    pass
-                process_sku(pcid, cid, datamonth)
+                while True:
+                    print("try sku for one time")
+                    try:
+                        process_sku(pcid, cid, datamonth)
+                    except Exception as e:
+                        continue
+                    break
+                print("add special data")
                 process_add_data()
 
                 make_brand_model_scale(pcid, cid, cidname, datamonth)

@@ -27,9 +27,34 @@ class DB99(object):
     DB["chu"] = "chu"
 
 
+class DB115(object):
+    host = dynamic_ip
+    # 99_5432 28943
+    # 99_5433 28944
+    # 155 28945
+    port = 28945
+    user = "zczx_write"
+    password = "zczx112211"
+
+    DB = dict()
+    DB["standard_library"] = "standard_library"
+    DB["fact_library"] = "fact_library"
+    DB["zhuican_web"] = "zhuican_web"
+    DB["raw_mj_category"] = "raw_mj_category"
+    DB["report_dg"] = "report_dg"
+    DB["raw_tb_comment_notag"] = "raw_tb_comment_notag"
+    DB["tb_comment_nlp"] = "tb_comment_nlp"
+    DB["lexicon"] = "lexicon"
+    DB["tb_comment_words"] = "tb_comment_words"
+    DB["chu"] = "chu"
+
+
 class Outer99(object):
     host = dynamic_ip
-    port = 28944  # 5432 28943 5433 28944
+    # 99_5432 28943
+    # 99_5433 28944
+    # 155 28945
+    port = 28945
     user = "zczx_write"
     password = "zczx112211"
 

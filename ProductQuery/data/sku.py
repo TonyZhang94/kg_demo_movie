@@ -297,6 +297,7 @@ def process_sku(pcid, cid, datamonth):
 if __name__ == '__main__':
     # pcid, cid = "4", "50012097"
     # pcid, cid, datamonth = "100", "2018101516", "201812"  # 美容仪
+    # pcid, cid, datamonth = "100", "2018112610", "201909"  # "螺丝刀"
     pcid, cid, datamonth = "100", "2019091609", "201908"  # 智能门锁
     # pcid, cid, datamonth = "100", "2019090610", "201812"  # 投影仪
     df = get_model_data(pcid, cid, datamonth)

@@ -3,6 +3,7 @@
 from ProductQuery import JenaFuseki
 from ProductQuery import nl2sparql
 from ProductQuery import wordTagging
+from ProductQuery import answerTemplate
 
 
 if __name__ == '__main__':
@@ -14,28 +15,34 @@ if __name__ == '__main__':
         question = wordTagging.pre_process(question)
         store = q2s.get_sparql(question)
         if store is not None:
-            my_query, nums = store
+            my_query, selects, rule_id = store
             print(my_query)
+            print("rule id =", rule_id)
             result = fuseki.get_sparql_result(my_query)
-            value = fuseki.get_sparql_result_value(result)
+            values = fuseki.get_sparql_result_value(result)
 
-            if isinstance(value, bool):
-                if value is True:
-                    print('Yes')
-                else:
-                    print('I don\'t know. :(')
-            else:
-                if len(value) == 0:
-                    print('I don\'t know. :(')
-                elif len(value) == 1:
-                    print(value[0])
-                else:
-                    output = ''
-                    for inx in range(0, min(len(value), 10*nums), nums):
-                        for i in range(nums):
-                            print(value[inx+i], end=" ")
-                        print()
-
+            if 1 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 2 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 3 == int(rule_id):
+                answerTemplate.answer_ask(values)
+            elif 4 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 5 == int(rule_id):
+                answerTemplate.answer_whether_nice(values)
+            elif 6 == int(rule_id):
+                answerTemplate.answer_count(values)
+            elif 7 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 8 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 9 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
+            elif 10 == int(rule_id):
+                answerTemplate.answer_detail(values)
+            elif 0 == int(rule_id):
+                answerTemplate.answer_select(values, selects, mode="SIGROW")
         else:
             print('I can\'t understand. :(')
 

@@ -12,6 +12,8 @@ def save_vocab(tasks):
         values = pd.read_sql(sql, con=engine)[column].values
         with open(f"../vocab/{file}.txt", mode="w", encoding="utf-8") as fp:
             for value in values:
+                if ("电钻" == value or "投影仪" == value or "螺丝刀" == value or "风批" == value) and "nmo" == tag:
+                    continue
                 value = value.replace("\\", "反斜杠").replace("/", "反斜杠")
                 value = value.replace(" ", "空格符")
                 value = value.replace("·", "黑点符")

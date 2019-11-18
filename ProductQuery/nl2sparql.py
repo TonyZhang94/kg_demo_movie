@@ -11,16 +11,17 @@ class NL2Sparql:
 
     def get_sparql(self, question):
         word_objects = self.tw.get_word_objects(question)
-        # for obj in word_objects:
-        #     print(obj.token, obj.pos)
+        for obj in word_objects:
+            print(obj.token, obj.pos)
         queries_dict = dict()
 
         for rule in self.rules:
-            (query, selects), num = rule.apply(word_objects)
+            (query, selects), rule_id, condition_num = rule.apply(word_objects)
 
             if query is not None:
-                queries_dict[num] = (query, selects)
+                queries_dict[condition_num] = (query, selects, rule_id)
 
+        # print(queries_dict)
         if len(queries_dict) == 0:
             return None
         elif len(queries_dict) == 1:

@@ -4,11 +4,12 @@ from refo import finditer
 
 
 class Rule(object):
-    def __init__(self, condition_num, condition=None, action=None):
+    def __init__(self, rule_id, condition_num, condition=None, action=None):
         assert condition and action
+        self.ruld_id = rule_id
+        self.condition_num = condition_num
         self.condition = condition
         self.action = action
-        self.condition_num = condition_num
 
     def apply(self, sentence):
         matches = []
@@ -16,7 +17,7 @@ class Rule(object):
             i, j = m.span()
             matches.extend(sentence[i:j])
 
-        return self.action(matches), self.condition_num
+        return self.action(matches), self.ruld_id, self.condition_num
 
 
 class KeywordRule(object):
